@@ -47,10 +47,10 @@ class Command(BaseCommand):
                     joueurs_ids = list(map(int, row[3].split(";")))  # Liste d'IDs des joueurs
 
                     # Trouver l'entraîneur
-                    entraineur = Entraineur.objects.get(id=entraineur_id)
+                    entraineur = Entraineur.objects.get(id_En=entraineur_id)
 
                     # Trouver les joueurs
-                    joueurs = Joueur.objects.filter(id__in=joueurs_ids)
+                    joueurs = Joueur.objects.filter(id_J__in=joueurs_ids)
 
                     # Créer ou mettre à jour l'équipe
                     equipe, created = Equipe.objects.update_or_create(

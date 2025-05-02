@@ -15,6 +15,7 @@ class Joueur(models.Model):
         ("O","Ousmane Dembélé")
     ]
 
+    id_J = models.IntegerField(primary_key=True)
     nom = models.CharField(max_length=100)
     age = models.IntegerField()
     poste = models.CharField(
@@ -35,6 +36,7 @@ class Joueur(models.Model):
 
 
 class Entraineur(models.Model):
+    id_En = models.IntegerField(primary_key=True)
     nom = models.CharField(max_length=100)
     experience = models.IntegerField(help_text="Années d'expérience")
     nationalite = models.CharField(max_length=50)

@@ -47,9 +47,11 @@ class Command(BaseCommand):
                     nationalite = row[3]
                     pied_fort = row[4]
                     nombre_but = int(row[5])
+                    id=int(row[6])
 
                     # Création ou mise à jour du joueur dans la base de données
                     Joueur.objects.update_or_create(
+                        id_J=id,
                         nom=nom,
                         defaults={
                             "age": age,

@@ -44,9 +44,11 @@ class Command(BaseCommand):
                     nom = row[0]
                     experience = int(row[1])
                     nationalite = row[2]
+                    id = int(row[3])
 
                     # Création ou mise à jour de l'entraîneur dans la base de données
                     Entraineur.objects.update_or_create(
+                        id_En=id,
                         nom=nom,
                         defaults={
                             "experience": experience,
