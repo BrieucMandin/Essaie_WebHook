@@ -1,6 +1,6 @@
-Nom,Expérience,Nationalité
-Christophe Galtier,25,France
-Pep Guardiola,30,Espagne
-Jürgen Klopp,28,Allemagne
-Thomas Tuchel,22,Allemagne
-Antonio Conte,30,Italie
+Nom,Expérience,Nationalité,id
+Christophe Galtier,25,France,1
+Pep Guardiola,30,Espagne,2
+Jürgen Klopp,28,Allemagne,3
+Thomas Tuchel,22,Allemagne,4
+Antonio Conte,30,Italie,5
