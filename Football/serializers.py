@@ -3,12 +3,14 @@ from .models import Joueur, Entraineur, Equipe
 
 
 class JoueurSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Joueur
         fields = '__all__'
 
 
 class EntraineurSerializer(serializers.ModelSerializer):
+    
     class Meta:
         model = Entraineur
         fields = '__all__'
