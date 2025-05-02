@@ -20,7 +20,16 @@ from django.urls import path, include
 
 from webhooks.views import webhook_receiver
 
+from rest_framework.routers import DefaultRouter
+from Football.views.views_api import JoueurViewSet, EntraineurViewSet, EquipeViewSet
+
+router = DefaultRouter()
+router.register(r'joueurs', JoueurViewSet, basename='joueur')
+router.register(r'entraineurs', EntraineurViewSet, basename='entraineur')
+router.register(r'equipes', EquipeViewSet, basename='equipe')
+
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path('', include(router.urls)),
     path('', include('webhooks.urls')),
 ]
