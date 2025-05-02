@@ -20,7 +20,7 @@ class EquipeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Equipe
-        fields = ['id','nom', 'stade', 'joueurs', 'entraineur'] 
+        fields = ['id','nom', 'stade', 'entraineur', 'joueurs'] 
 
 
 class EquipeWriteSerializer(serializers.ModelSerializer):
