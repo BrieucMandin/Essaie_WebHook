@@ -5,9 +5,6 @@
 import chardet
 import os
 
-from datetime import datetime
-
-
 def csv_file_path(file_name):
     """Return complete csv file path."""
 
