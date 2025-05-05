@@ -7,7 +7,7 @@ import requests
 @receiver(post_save, sender=Joueur)
 def notify_webhook_receiver_Joueur(sender, instance, created, **kwargs):
     payload = {
-        "id" : instance.id,
+        "id" : instance.id_J,
         "nom" : instance.nom,
     }
     try:
@@ -19,7 +19,7 @@ def notify_webhook_receiver_Joueur(sender, instance, created, **kwargs):
 @receiver(post_save, sender=Entraineur)
 def notify_webhook_receiver_Entraineur(sender, instance, created, **kwargs):
     payload = {
-        "id" : instance.id,
+        "id" : instance.id_En,
         "nom" : instance.nom,
     }
     try:
