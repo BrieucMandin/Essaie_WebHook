@@ -1,8 +1,11 @@
 # ton_app/signals.py
+import requests
+
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+
 from .models import Joueur, Entraineur, Equipe
-import requests
+
 
 @receiver(post_save, sender=Joueur)
 def notify_webhook_receiver_Joueur(sender, instance, created, **kwargs):
