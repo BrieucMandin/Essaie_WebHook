@@ -45,6 +45,7 @@ class Command(BaseCommand):
                     stade = row[1]
                     entraineur_id = int(row[2])  # ID de l'entraîneur
                     joueurs_ids = list(map(int, row[3].split(";")))  # Liste d'IDs des joueurs
+                    id = int(row[4])
 
                     # Trouver l'entraîneur
                     entraineur = Entraineur.objects.get(id_En=entraineur_id)
@@ -54,8 +55,9 @@ class Command(BaseCommand):
 
                     # Créer ou mettre à jour l'équipe
                     equipe, created = Equipe.objects.update_or_create(
-                        nom=nom,
+                        id_Eq=id,
                         defaults={
+                            "nom":nom,
                             "stade": stade,
                             "entraineur": entraineur,
                         },
