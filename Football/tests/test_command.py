@@ -71,7 +71,6 @@ class TestFeedTableCommandMixin:
         self.assertEqual(self.model_count + 1, self.table_model.objects.count())
 
 
-
 @patch("Football.management.commands.feed_all_tables.call_command")
 class TestFeedAllTables(TestCase):
     """Test class for custom feed_all_tables command."""

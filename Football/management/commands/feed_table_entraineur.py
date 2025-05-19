@@ -37,7 +37,9 @@ class Command(BaseCommand):
             self.stdout.write(self.style.SUCCESS(SUCCESS_REMOVE_ALL_RECORDS.format(table_name=TABLE_ENTRAINEUR_NAME)))
 
         try:
-            with open(TABLE_ENTRAINEUR_FILE_PATH, newline="", encoding=detect_encoding(TABLE_ENTRAINEUR_FILE_PATH)) as csv_file:
+            with open(
+                TABLE_ENTRAINEUR_FILE_PATH, newline="", encoding=detect_encoding(TABLE_ENTRAINEUR_FILE_PATH)
+            ) as csv_file:
                 table_reader = csv.reader(csv_file, delimiter=",")
                 next(table_reader)  # Skip first row containing column names.
                 for row in table_reader:
@@ -59,4 +61,6 @@ class Command(BaseCommand):
                 self.stdout.write(self.style.SUCCESS(SUCCESS_POPULATE_TABLE.format(table_name=TABLE_ENTRAINEUR_NAME)))
 
         except Exception as error:
-            self.stderr.write(self.style.ERROR(ERROR_POPULATE_TABLE.format(table_name=TABLE_ENTRAINEUR_NAME, error=error)))
+            self.stderr.write(
+                self.style.ERROR(ERROR_POPULATE_TABLE.format(table_name=TABLE_ENTRAINEUR_NAME, error=error))
+            )

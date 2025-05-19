@@ -18,7 +18,7 @@ class JoueurViewSet(viewsets.ModelViewSet):
             return Response(serializer.data)
         return Response(serializer.errors, status=400)
 
-    @action(detail=False, methods=['get'], url_path='nom/(?P<nom>[^/.]+)')
+    @action(detail=False, methods=["get"], url_path="nom/(?P<nom>[^/.]+)")
     def get_by_nom(self, request, nom=None):
         joueurs = Joueur.objects.filter(nom__iexact=nom)
         serializer = self.get_serializer(joueurs, many=True)
@@ -29,7 +29,7 @@ class EntraineurViewSet(viewsets.ModelViewSet):
     queryset = Entraineur.objects.all()
     serializer_class = EntraineurSerializer
 
-    @action(detail=False, methods=['get'], url_path='nom/(?P<nom>[^/.]+)')
+    @action(detail=False, methods=["get"], url_path="nom/(?P<nom>[^/.]+)")
     def get_by_nom(self, request, nom=None):
         entraineurs = Entraineur.objects.filter(nom__iexact=nom)
         serializer = self.get_serializer(entraineurs, many=True)
@@ -40,11 +40,11 @@ class EquipeViewSet(viewsets.ModelViewSet):
     queryset = Equipe.objects.all()
 
     def get_serializer_class(self):
-        if self.request.method in ['POST', 'PATCH', 'PUT']:
+        if self.request.method in ["POST", "PATCH", "PUT"]:
             return EquipeWriteSerializer
         return EquipeSerializer
 
-    @action(detail=False, methods=['get'], url_path='nom/(?P<nom>[^/.]+)')
+    @action(detail=False, methods=["get"], url_path="nom/(?P<nom>[^/.]+)")
     def get_by_nom(self, request, nom=None):
         equipes = Equipe.objects.filter(nom__iexact=nom)
         serializer = self.get_serializer(equipes, many=True)

@@ -5,13 +5,13 @@ from .models import Joueur, Entraineur, Equipe
 class JoueurSerializer(serializers.ModelSerializer):
     class Meta:
         model = Joueur
-        fields = '__all__'
+        fields = "__all__"
 
 
 class EntraineurSerializer(serializers.ModelSerializer):
     class Meta:
         model = Entraineur
-        fields = '__all__'
+        fields = "__all__"
 
 
 class EquipeSerializer(serializers.ModelSerializer):
@@ -20,7 +20,7 @@ class EquipeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Equipe
-        fields = ['id_Eq','nom', 'stade', 'entraineur', 'joueurs'] 
+        fields = ["id_Eq", "nom", "stade", "entraineur", "joueurs"]
 
 
 class EquipeWriteSerializer(serializers.ModelSerializer):
@@ -29,4 +29,4 @@ class EquipeWriteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Equipe
-        fields = '__all__'
+        fields = "__all__"

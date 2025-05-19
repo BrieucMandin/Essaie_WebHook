@@ -57,7 +57,7 @@ class Command(BaseCommand):
                     equipe, created = Equipe.objects.update_or_create(
                         id_Eq=id,
                         defaults={
-                            "nom":nom,
+                            "nom": nom,
                             "stade": stade,
                             "entraineur": entraineur,
                         },
