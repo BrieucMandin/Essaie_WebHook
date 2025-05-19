@@ -29,16 +29,16 @@ jobs:
         run: docker-compose -f docker-compose.yml up -d --build
 
       - name: Install requirements
-        run: docker exec --tty $(docker-compose ps -q endpoint-app) bash -lc "pip install -r requirements_tests.txt"
+        run: docker exec --tty $(docker-compose ps -q base-app) bash -lc "pip install -r requirements.txt"
 
       - name: Check Black formatting
-        run: docker exec --tty $(docker-compose ps -q endpoint-app) bash -lc "black . --check --diff --color --line-length=120 --extend-exclude '^.*\\b(migrations)\\b.*$'"
+        run: docker exec --tty $(docker-compose ps -q base-app) bash -lc "black . --check --diff --color --line-length=120 --extend-exclude '^.*\\b(migrations)\\b.*$'"
 
       - name: Run unit tests
-        run: docker exec --tty $(docker-compose ps -q endpoint-app) bash -lc "coverage run manage.py test"
+        run: docker exec --tty $(docker-compose ps -q base-app) bash -lc "coverage run manage.py test"
 
       - name: Coverage report
-        run: docker exec --tty $(docker-compose ps -q endpoint-app) bash -lc "coverage report -m --fail-under=80"
+        run: docker exec --tty $(docker-compose ps -q base-app) bash -lc "coverage report -m --fail-under=80"
 
       - name: Tear down
         run: docker-compose down -v --rmi all
