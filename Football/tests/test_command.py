@@ -46,9 +46,7 @@ class TestFeedTableCommandMixin:
             f"Football.management.commands.{self.feed_table_command}.{self.original_file_path_constant_name}",
             self.test_file_path,
         ):
-            # On insère d'abord les entraîneurs nécessaires à la création des équipes
-            call_command("feed_table_entraineur")
-            # Act.
+
             call_command(self.feed_table_command)
 
         # Assert.
@@ -62,8 +60,6 @@ class TestFeedTableCommandMixin:
             f"Football.management.commands.{self.feed_table_command}.{self.original_file_path_constant_name}",
             self.test_file_path,
         ):
-            # On insère d'abord les entraîneurs nécessaires à la création des équipes
-            call_command("feed_table_entraineur")
             # Act.
             call_command(self.feed_table_command, "--flush")
 
@@ -133,8 +129,7 @@ class TestFeedTableEquipeCommand(TestCase, TestFeedTableCommandMixin):
 
     def __init__(self, *args, **kwargs):
         """Initialize the class."""
-
-        TestCase.__init__(self, *args, **kwargs)
+        super().__init__(*args, **kwargs)
         TestFeedTableCommandMixin.__init__(
             self,
             table_model=models.Equipe,
@@ -143,4 +138,9 @@ class TestFeedTableEquipeCommand(TestCase, TestFeedTableCommandMixin):
             test_file="Equipe_test.csv",
         )
 
-        self.setUp = self.mixin_setup
+    def setUp(self):
+        self.mixin_setup()
+
+        # On insère d'abord les entraîneurs nécessaires à la création des équipes
+        call_command("feed_table_joueur")
+        call_command("feed_table_entraineur")
