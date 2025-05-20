@@ -5,6 +5,7 @@
 import chardet
 import os
 
+
 def csv_file_path(file_name):
     """Return complete csv file path."""
 
