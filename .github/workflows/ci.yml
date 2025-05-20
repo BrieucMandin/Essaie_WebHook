@@ -37,6 +37,9 @@ jobs:
       - name: Run unit tests
         run: docker exec --tty $(docker-compose ps -q base-app) bash -lc "coverage run manage.py test"
 
+      - name: Check working directory
+        run: docker exec --tty $(docker-compose ps -q base-app) bash -lc "pwd && ls -al"
+        
       - name: Coverage report
         run: docker exec --tty $(docker-compose ps -q base-app) bash -lc "coverage report -m --fail-under=80"
 
