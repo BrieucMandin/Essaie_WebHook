@@ -10,7 +10,7 @@ class JoueurSerializer(serializers.ModelSerializer):
 
 
 class EntraineurSerializer(serializers.ModelSerializer):
-    
+
     class Meta:
         model = Entraineur
         fields = "__all__"
