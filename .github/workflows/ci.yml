@@ -35,13 +35,10 @@ jobs:
         run: docker exec --tty $(docker-compose ps -q base-app) bash -lc "black . --check --diff --color --line-length=120 --extend-exclude '^.*\\b(migrations)\\b.*$'"
 
       - name: Run unit tests
-        run: docker exec --tty $(docker-compose ps -q base-app) bash -lc "coverage run manage.py test"
+        run: docker exec --tty $(docker-compose ps -q base-app) bash -lc "mkdir -p /tmp/coverage && COVERAGE_FILE=/tmp/coverage/.coverage coverage run manage.py test"
 
-      - name: Check working directory
-        run: docker exec --tty $(docker-compose ps -q base-app) bash -lc "pwd && ls -al"
-        
       - name: Coverage report
-        run: docker exec --tty $(docker-compose ps -q base-app) bash -lc "coverage report -m --fail-under=80"
+        run: docker exec --tty $(docker-compose ps -q base-app) bash -lc "COVERAGE_FILE=/tmp/coverage/.coverage coverage report -m --fail-under=80"
 
       - name: Tear down
         run: docker-compose down -v --rmi all
