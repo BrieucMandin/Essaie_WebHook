@@ -31,13 +31,10 @@ router.register(r"equipes", EquipeViewSet, basename="equipe")
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include(router.urls)),
-
-     # Spectacular Schema
+    # Spectacular Schema
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
-
     # Swagger UI
     path("api/docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),
-
     # Redoc UI
     path("api/redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),
 ]
