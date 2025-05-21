@@ -23,9 +23,11 @@ def webhook_receiver(request):
 
     :Example:
 
-    .. code-block:: json
+    .. code-block:: http-request
 
         POST /webhook-endpoint/
+        Content-Type: application/json
+
         {
             "id": 1,
             "nom": "John Doe",
@@ -36,6 +38,7 @@ def webhook_receiver(request):
     :status 200: Requête POST traitée avec succès.
     :status 405: Méthode HTTP non autorisée (autre que POST).
     """
+
 
     if request.method == "POST":
         payload = json.loads(request.body)
