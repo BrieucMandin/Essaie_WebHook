@@ -15,7 +15,34 @@ from Football.utils import detect_encoding
 
 
 class Command(BaseCommand):
-    """Populate the Equipe table."""
+    """
+    Commande Django personnalisée pour alimenter la table ``Equipe``.
+
+    Cette commande lit un fichier CSV contenant les données des équipes,
+    leurs entraîneurs et les joueurs associés. Elle insère ou met à jour
+    les enregistrements dans la base de données, tout en gérant les
+    relations de type ``ForeignKey`` et ``ManyToMany``.
+
+    Attributs :
+        help (str): Message d’aide affiché avec la commande ``python manage.py help``.
+
+    Méthodes :
+        add_arguments(parser):
+            Ajoute une option ``--flush`` permettant de supprimer tous les
+            enregistrements existants dans la table ``Equipe`` avant l’import.
+
+        La méthode ``handle(*args, **options)``
+            Logique principale de la commande :
+
+            - Supprime les enregistrements si l’option ``--flush`` est utilisée.
+            - Ouvre et lit le fichier ``TABLE_EQUIPE_FILE_PATH``.
+            - Pour chaque ligne :
+                - Récupère les données de l'équipe (nom, stade, entraîneur, joueurs, id).
+                - Recherche l'entraîneur et les joueurs associés.
+                - Crée ou met à jour une instance ``Equipe``.
+                - Met à jour la relation ``ManyToMany`` avec les joueurs.
+            - Affiche un message de succès ou une erreur selon le résultat.
+    """
 
     help = COMMAND_HELP.format(table_name=TABLE_EQUIPE_NAME)
 
