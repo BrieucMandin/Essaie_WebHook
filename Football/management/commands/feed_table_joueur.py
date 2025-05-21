@@ -39,7 +39,6 @@ class Command(BaseCommand):
             - Affiche un message de succès ou d'erreur.
     """
 
-
     help = COMMAND_HELP.format(table_name=TABLE_JOUEUR_NAME)
 
     def add_arguments(self, parser):

@@ -25,13 +25,11 @@ class Command(BaseCommand):
         handle(*args, **options):
             Logique principale de la commande :
 
-            - Si l'option ``--flush`` est fournie, exécute chaque commande avec ``--flush`` 
+            - Si l'option ``--flush`` est fournie, exécute chaque commande avec ``--flush``
             pour réinitialiser les données de toutes les tables.
             - Sinon, exécute simplement les commandes d'alimentation sans suppression préalable.
 
     """
-
-
 
     help = "Enregistre les données dans toutes les tables."
 

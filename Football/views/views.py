@@ -39,7 +39,6 @@ def webhook_receiver(request):
     :status 405: Méthode HTTP non autorisée (autre que POST).
     """
 
-
     if request.method == "POST":
         payload = json.loads(request.body)
 
