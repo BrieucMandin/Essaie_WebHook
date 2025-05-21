@@ -9,3 +9,5 @@ requests==2.32.2
 sphinx==7.3.7
 sphinx-rtd-theme==2.0.0
 sphinx-autodoc-typehints==1.25.2
+# Documentation (Swagger)
+drf-spectacular==0.28.0
