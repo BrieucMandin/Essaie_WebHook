@@ -15,7 +15,29 @@ from Football.utils import detect_encoding
 
 
 class Command(BaseCommand):
-    """Populate the Entraineur table."""
+    """
+    Commande Django personnalisée pour alimenter la table `Entraineur`.
+
+    Cette commande lit un fichier CSV contenant les données des entraîneurs
+    et les insère ou met à jour dans la base de données. Elle offre également
+    une option `--flush` pour supprimer tous les enregistrements avant l'importation.
+
+    Attributs :
+        help (str): Message d’aide affiché avec la commande `python manage.py help`.
+
+    Méthodes :
+        add_arguments(parser):
+            Ajoute l'option `--flush` pour supprimer tous les enregistrements
+            existants dans la table `Entraineur` avant d'importer de nouvelles données.
+
+        handle(*args, **options):
+            Logique principale de la commande :
+                - Supprime les enregistrements si `--flush` est spécifié.
+                - Lit les données depuis le fichier `TABLE_ENTRAINEUR_FILE_PATH`.
+                - Pour chaque ligne du fichier CSV :
+                    - Crée ou met à jour un objet `Entraineur`.
+                - Affiche un message de succès ou une erreur selon le résultat.
+    """
 
     help = COMMAND_HELP.format(table_name=TABLE_ENTRAINEUR_NAME)
 

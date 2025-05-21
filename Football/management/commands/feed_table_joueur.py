@@ -15,7 +15,27 @@ from Football.utils import detect_encoding
 
 
 class Command(BaseCommand):
-    """Populate the Joueur table."""
+    """
+    Commande Django personnalisée pour alimenter la table `Joueur`.
+
+    Cette commande lit un fichier CSV contenant les données des joueurs
+    et les insère ou les met à jour dans la base de données. Elle propose
+    également une option `--flush` pour vider la table avant insertion.
+
+    Attributs :
+        help (str): Description de l'aide affichée avec `python manage.py help`.
+
+    Méthodes :
+        add_arguments(parser):
+            Ajoute l'option `--flush` à la commande pour vider la table `Joueur` avant l'importation.
+
+        handle(*args, **options):
+            Exécute la logique principale de la commande :
+                - Vide la table si l'option `--flush` est utilisée.
+                - Lit le fichier CSV à l'emplacement `TABLE_JOUEUR_FILE_PATH`.
+                - Pour chaque ligne, insère ou met à jour un objet `Joueur`.
+                - Affiche un message de succès ou d'erreur.
+    """
 
     help = COMMAND_HELP.format(table_name=TABLE_JOUEUR_NAME)
 

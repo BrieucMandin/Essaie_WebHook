@@ -7,13 +7,27 @@ import os
 
 
 def csv_file_path(file_name):
-    """Return complete csv file path."""
+    """
+    Construit le chemin complet vers un fichier CSV situé dans le dossier 'Football/csv/'.
+
+    :param file_name: Nom du fichier CSV (avec extension).
+    :type file_name: str
+    :return: Chemin absolu complet du fichier CSV.
+    :rtype: str
+    """
 
     return "/".join([os.getcwd(), "Football", "csv", file_name])
 
 
 def detect_encoding(file_path):
-    """Detects the encoding of a file and returns the appropriate encoding."""
+    """
+    Détecte l'encodage d'un fichier à partir de son contenu brut.
+
+    :param file_path: Chemin du fichier dont on veut détecter l'encodage.
+    :type file_path: str
+    :return: L'encodage détecté du fichier, ou 'utf-8' si la détection échoue.
+    :rtype: str
+    """
 
     with open(file_path, "rb") as file:
         raw_data = file.read()

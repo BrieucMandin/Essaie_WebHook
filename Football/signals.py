@@ -11,6 +11,20 @@ from .models import Joueur, Entraineur, Equipe
 
 @receiver(post_save, sender=Joueur)
 def notify_webhook_receiver_Joueur(sender, instance, created, **kwargs):
+    """
+    Envoie une requête POST à un endpoint webhook après la sauvegarde (création ou mise à jour) d'une instance de Joueur.
+
+    :param sender: Le modèle qui a envoyé le signal (ici, `Joueur`).
+    :type sender: Model
+    :param instance: L'instance de `Joueur` qui a été sauvegardée.
+    :type instance: Joueur
+    :param created: Indique si l'instance a été créée (`True`) ou mise à jour (`False`).
+    :type created: bool
+    :param kwargs: Paramètres supplémentaires du signal.
+    :type kwargs: dict
+
+    :note: Le webhook est envoyé uniquement après la validation de la transaction (`transaction.on_commit`).
+    """
 
     def send_webhook():
 
@@ -27,6 +41,19 @@ def notify_webhook_receiver_Joueur(sender, instance, created, **kwargs):
 
 @receiver(post_delete, sender=Joueur)
 def notify_webhook_delete_Joueur(sender, instance, **kwargs):
+    """
+    Envoie une requête POST à un endpoint webhook après la suppression d'une instance de Joueur.
+
+    :param sender: Le modèle qui a envoyé le signal (ici, `Joueur`).
+    :type sender: Model
+    :param instance: L'instance de `Joueur` qui a été supprimée.
+    :type instance: Joueur
+    :param kwargs: Paramètres supplémentaires du signal.
+    :type kwargs: dict
+
+    :note: Le webhook est envoyé uniquement après la validation de la transaction (`transaction.on_commit`).
+    """
+
     def send_webhook():
 
         payload = {"id": instance.id_J, "nom": instance.nom, "type": "joueur", "action": "delete"}
@@ -41,6 +68,21 @@ def notify_webhook_delete_Joueur(sender, instance, **kwargs):
 
 @receiver(post_save, sender=Entraineur)
 def notify_webhook_receiver_Entraineur(sender, instance, created, **kwargs):
+    """
+    Envoie une requête POST à un endpoint webhook après la sauvegarde (création ou mise à jour) d'une instance d'Entraineur.
+
+    :param sender: Le modèle qui a envoyé le signal (ici, `Entraineur`).
+    :type sender: Model
+    :param instance: L'instance de `Entraineur` qui a été sauvegardée.
+    :type instance: Entraineur
+    :param created: Indique si l'instance a été créée (`True`) ou mise à jour (`False`).
+    :type created: bool
+    :param kwargs: Paramètres supplémentaires du signal.
+    :type kwargs: dict
+
+    :note: Le webhook est envoyé uniquement après la validation de la transaction (`transaction.on_commit`).
+    """
+
     def send_webhook():
 
         payload = {"id": instance.id_En, "nom": instance.nom, "type": "entraineur", "action": "update"}
@@ -55,6 +97,19 @@ def notify_webhook_receiver_Entraineur(sender, instance, created, **kwargs):
 
 @receiver(post_delete, sender=Entraineur)
 def notify_webhook_delete_entraineur(sender, instance, **kwargs):
+    """
+    Envoie une requête POST à un endpoint webhook après la suppression d'une instance d'Entraineur.
+
+    :param sender: Le modèle qui a envoyé le signal (ici, `Entraineur`).
+    :type sender: Model
+    :param instance: L'instance de `Entraineur` qui a été supprimée.
+    :type instance: Entraineur
+    :param kwargs: Paramètres supplémentaires du signal.
+    :type kwargs: dict
+
+    :note: Le webhook est envoyé uniquement après la validation de la transaction (`transaction.on_commit`).
+    """
+
     def send_webhook():
 
         payload = {"id": instance.id_En, "nom": instance.nom, "type": "entraineur", "action": "delete"}
@@ -69,6 +124,20 @@ def notify_webhook_delete_entraineur(sender, instance, **kwargs):
 
 @receiver(m2m_changed, sender=Equipe.joueurs.through)
 def notify_webhook_receiver_Equipe(sender, instance, action, **kwargs):
+    """
+    Envoie une requête POST à un endpoint webhook après qu'un ou plusieurs joueurs ont été ajoutés à une équipe.
+
+    :param sender: Le modèle intermédiaire de la relation many-to-many (`Equipe.joueurs.through`).
+    :type sender: Model
+    :param instance: L'instance de `Equipe` concernée par la modification.
+    :type instance: Equipe
+    :param action: L'action m2m déclenchée (par exemple : 'post_add').
+    :type action: str
+    :param kwargs: Paramètres supplémentaires du signal.
+    :type kwargs: dict
+
+    :note: Le webhook est déclenché uniquement après l'ajout effectif de joueurs (`action == "post_add"`) et après validation de la transaction (`transaction.on_commit`).
+    """
 
     def send_webhook():
 
@@ -85,6 +154,18 @@ def notify_webhook_receiver_Equipe(sender, instance, action, **kwargs):
 
 @receiver(post_delete, sender=Equipe)
 def notify_webhook_delete_equipe(sender, instance, **kwargs):
+    """
+    Envoie une requête POST à un endpoint webhook après la suppression d'une instance d'Equipe.
+
+    :param sender: Le modèle qui a envoyé le signal (ici, `Equipe`).
+    :type sender: Model
+    :param instance: L'instance de `Equipe` qui a été supprimée.
+    :type instance: Equipe
+    :param kwargs: Paramètres supplémentaires du signal.
+    :type kwargs: dict
+
+    :note: Le webhook est envoyé uniquement après la validation de la transaction (`transaction.on_commit`).
+    """
 
     def send_webhook():
 
